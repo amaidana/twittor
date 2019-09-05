@@ -1,8 +1,20 @@
 
+// validación para saber si el SW está en la razíz
+var url = window.location.href;
+var swLocation = '/twittor/sw.js';
+
+
 // Registrar el SW
 if( navigator.serviceWorker ) { // comprobar que se puede usar SW
 
-  navigator.serviceWorker.register( '/sw.js' ); // registrar el SW
+  // validación para saber si el SW está en la razíz
+  if( url.includes( 'localhost' ) ) {
+
+    swLocation = '/sw.js';
+
+  }
+
+  navigator.serviceWorker.register( swLocation ); // registrar el SW
 
 }
 
