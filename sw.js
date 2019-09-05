@@ -1,15 +1,10 @@
 
-// ============================================================================================================
-// Cache con network fallback
-// ============================================================================================================
-
-
 // importaciones
 importScripts( 'js/sw-utils.js' );
 
 
 const STATIC_CACHE_NAME    = 'static-v1';
-const DYNAMIC_CACHE_NAME   = 'dynamic-v1';
+const DYNAMIC_CACHE_NAME   = 'dynamic-v2';
 const INMUTABLE_CACHE_NAME = 'inmutable-v1';
 
 
@@ -60,9 +55,17 @@ self.addEventListener( 'activate', e => {
 
 			keys.forEach( nombreCache => {
 
-				if( nombreCache !== STATIC_CACHE_NAME && nombreCache.includes( 'static' ) ) {
+				if( nombreCache !== STATIC_CACHE_NAME && nombreCache.includes( 'static' ) ) { 
 
+					// eliminar cache estático viejo
 					return caches.delete( nombreCache );
+
+				}
+
+				if( key !== DYNAMIC_CACHE_NAME && nombreCache.includes( 'dynamic' ) ) {
+
+					// eliminar cache dinámico viejo
+					return caches.delte( nombreCache );
 
 				}
 
