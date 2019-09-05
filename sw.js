@@ -62,7 +62,7 @@ self.addEventListener( 'activate', e => {
 
 				}
 
-				if( key !== DYNAMIC_CACHE_NAME && nombreCache.includes( 'dynamic' ) ) {
+				if( nombreCache !== DYNAMIC_CACHE_NAME && nombreCache.includes( 'dynamic' ) ) {
 
 					// eliminar cache dinámico viejo
 					return caches.delte( nombreCache );
